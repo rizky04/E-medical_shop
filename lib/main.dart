@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: greenColor),
-      // home: SplashScreen(),
-      home: RegisterPages(),
+      home: SplashScreen(),
+      // home: RegisterPages(),
     );
   }
 }

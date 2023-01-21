@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical/pages/register_page.dart';
 import 'package:medical/widget/button_primary.dart';
 import 'package:medical/widget/general_logo.dart';
 import 'package:medical/widget/widget_ilustration.dart';
@@ -22,7 +23,13 @@ class SplashScreen extends StatelessWidget {
             subtitle2: 'subtitle2',
             child: ButtonPrimary(
               text: "Get Started",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegisterPages(),
+                    ));
+              },
             ),
           ),
         ],

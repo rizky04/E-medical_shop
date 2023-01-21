@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -5,9 +6,11 @@ import 'package:flutter/material.dart';
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:medical/network/api/url_api.dart';
 import 'package:medical/theme.dart';
 import 'package:medical/widget/button_primary.dart';
 import 'package:medical/widget/general_logo.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPages extends StatefulWidget {
   const RegisterPages({Key? key}) : super(key: key);
@@ -22,6 +25,37 @@ class _RegisterPagesState extends State<RegisterPages> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController addressController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  registerSubmit() async {
+    var registerUrl = Uri.parse(BASEURL.apiRegister);
+    final response = await http.post(registerUrl, body: {
+      "fullname": fullnameController.text,
+      "email": emailController.text,
+      "phone": phoneController.text,
+      "address": addressController.text,
+      "password": passwordController.text
+    });
+    final data = json.decode(response.body);
+    int value = data['value'];
+    String message = data['message'];
+    if (value == 1) {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Information"),
+                content: Text(message),
+                actions: [TextButton(onPressed: () {}, child: Text("OKE"))],
+              ));
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("Information"),
+                content: Text(message),
+                actions: [TextButton(onPressed: () {}, child: Text("OKE"))],
+              ));
+    }
+  }
 
   bool _isObsecure = true;
   @override
@@ -193,7 +227,31 @@ class _RegisterPagesState extends State<RegisterPages> {
           ),
           Container(
             padding: EdgeInsets.all(24),
-            child: ButtonPrimary(text: "Register Now", onTap: () {}),
+            child: ButtonPrimary(
+                text: "Register Now",
+                onTap: () {
+                  if (fullnameController.text.isEmpty ||
+                      emailController.text.isEmpty ||
+                      phoneController.text.isEmpty ||
+                      addressController.text.isEmpty ||
+                      passwordController.text.isEmpty) {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              title: Text("warning !!"),
+                              content: Text('Please, enter the field'),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("oke"))
+                              ],
+                            ));
+                  } else {
+                    registerSubmit();
+                  }
+                }),
           ),
           SizedBox(
             height: 16,
