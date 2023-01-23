@@ -18,9 +18,10 @@ class SplashScreen extends StatelessWidget {
           ),
           WidgetIlustration(
             image: "assets/splash_ilustration.png",
-            title: "title",
-            subtitle1: "subtitle",
-            subtitle2: 'subtitle2',
+            title: "Find your medical ",
+            title2: "solution",
+            subtitle1: "Consult with a doctor",
+            subtitle2: 'Whereever adn whenever you want',
             child: ButtonPrimary(
               text: "Get Started",
               onTap: () {

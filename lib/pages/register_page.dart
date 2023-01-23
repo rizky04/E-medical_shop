@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:medical/network/api/url_api.dart';
+import 'package:medical/pages/login_page.dart';
 import 'package:medical/theme.dart';
 import 'package:medical/widget/button_primary.dart';
 import 'package:medical/widget/general_logo.dart';
@@ -44,7 +44,17 @@ class _RegisterPagesState extends State<RegisterPages> {
           builder: (context) => AlertDialog(
                 title: Text("Information"),
                 content: Text(message),
-                actions: [TextButton(onPressed: () {}, child: Text("OKE"))],
+                actions: [
+                  TextButton(
+                      onPressed: () {
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPages()),
+                            (route) => false);
+                      },
+                      child: Text("OKE"))
+                ],
               ));
     } else {
       showDialog(
@@ -267,9 +277,18 @@ class _RegisterPagesState extends State<RegisterPages> {
               SizedBox(
                 width: 5,
               ),
-              Text(
-                "login Now",
-                style: boldTextStyle.copyWith(color: greenColor, fontSize: 15),
+              InkWell(
+                onTap: () {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginPages()),
+                      (route) => false);
+                },
+                child: Text(
+                  "login Now",
+                  style:
+                      boldTextStyle.copyWith(color: greenColor, fontSize: 15),
+                ),
               )
             ],
           ),

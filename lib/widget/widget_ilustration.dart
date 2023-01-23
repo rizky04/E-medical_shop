@@ -7,12 +7,14 @@ class WidgetIlustration extends StatelessWidget {
   final Widget child;
   final String image;
   final String title;
+  final String title2;
   final String subtitle1;
   final String subtitle2;
   const WidgetIlustration(
       {required this.child,
       required this.image,
       required this.title,
+      required this.title2,
       required this.subtitle1,
       required this.subtitle2});
   @override
@@ -24,10 +26,15 @@ class WidgetIlustration extends StatelessWidget {
           width: 250,
         ),
         SizedBox(
-          height: 30,
+          height: 100,
         ),
         Text(
           title,
+          style: regulerTextStyle.copyWith(fontSize: 25),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          title2,
           style: regulerTextStyle.copyWith(fontSize: 25),
           textAlign: TextAlign.center,
         ),
@@ -50,7 +57,7 @@ class WidgetIlustration extends StatelessWidget {
                   fontSize: 15, color: greyLightColor),
             ),
             SizedBox(
-              height: 40,
+              height: 100,
             ),
             child ?? SizedBox(),
           ],
