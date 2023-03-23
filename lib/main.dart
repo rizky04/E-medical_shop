@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical/pages/login_page.dart';
+import 'package:medical/pages/main_page.dart';
 import 'package:medical/pages/register_page.dart';
 import 'package:medical/pages/splash_screen.dart';
 import 'package:medical/theme.dart';
@@ -19,9 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: greenColor),
-      home: SplashScreen(),
+      home: MainPage(),
       // home: RegisterPages(),
       // home: LoginPages(),
+      // home: SplashScreen(),
     );
   }
 }

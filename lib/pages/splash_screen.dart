@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical/pages/login_page.dart';
 import 'package:medical/pages/register_page.dart';
 import 'package:medical/widget/button_primary.dart';
 import 'package:medical/widget/general_logo.dart';
@@ -28,7 +29,7 @@ class SplashScreen extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RegisterPages(),
+                      builder: (context) => LoginPages(),
                     ));
               },
             ),

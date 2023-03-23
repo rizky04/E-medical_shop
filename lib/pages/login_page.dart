@@ -34,8 +34,9 @@ class _LoginPagesState extends State<LoginPages> {
     if (value == 1) {
       showDialog(
           context: context,
-          builder: ((context) => AlertDialog(
-                title: Text(message),
+          builder: (context) => AlertDialog(
+                title: Text("information"),
+                content: Text(message),
                 actions: [
                   TextButton(
                       onPressed: () {
@@ -46,7 +47,7 @@ class _LoginPagesState extends State<LoginPages> {
                       },
                       child: Text("oke"))
                 ],
-              )));
+              ));
     } else {
       showDialog(
           context: context,

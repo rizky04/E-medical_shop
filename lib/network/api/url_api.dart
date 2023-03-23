@@ -4,4 +4,7 @@ class BASEURL {
   static String apiRegister =
       "https://medical.aminproject.xyz/register_api.php/";
   static String apiLogin = "https://medical.aminproject.xyz/login_api.php/";
+  static String apiCategory =
+      "https://medical.aminproject.xyz/get_product_with_category.php";
+  static String apiProduct = "https://medical.aminproject.xyz/get_product.php";
 }
