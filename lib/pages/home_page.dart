@@ -1,14 +1,12 @@
 import 'dart:convert';
-import 'dart:async';
 import 'dart:core';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:medical/network/api/url_api.dart';
 import 'package:medical/network/model/product_model.dart';
+import 'package:medical/pages/detail_product.dart';
+import 'package:medical/pages/search_product.dart';
 import 'package:medical/theme.dart';
 import 'package:medical/widget/card_category.dart';
 import 'package:medical/widget/card_product.dart';
@@ -36,7 +34,6 @@ class _HomePageState extends State<HomePage> {
           listCategory.add(CatergoryWithProduct.fromJson(item));
         }
       });
-      getProduct();
     }
   }
 
@@ -59,13 +56,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getCategory();
+    getProduct();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
           child: ListView(
-        padding: EdgeInsets.fromLTRB(24, 30, 24, 30),
+        padding: const EdgeInsets.fromLTRB(24, 30, 24, 30),
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +76,7 @@ class _HomePageState extends State<HomePage> {
                     'assets/logo.png',
                     width: 155,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 16,
                   ),
                   Text(
@@ -95,94 +94,125 @@ class _HomePageState extends State<HomePage> {
                   ))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 24,
           ),
-          Container(
-            height: 55,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Color(0xffe4faf0)),
-            child: TextField(
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Color(0xffb1d8b2),
-                  ),
-                  hintText: "Search medicine...?",
-                  hintStyle:
-                      regulerTextStyle.copyWith(color: Color(0xffb0d8b2))),
+          InkWell(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const SearchProduct()));
+            },
+            child: Container(
+              height: 55,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: const Color(0xffe4faf0)),
+              child: TextField(
+                enabled: false,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: Color(0xffb1d8b2),
+                    ),
+                    hintText: "Search medicine...?",
+                    hintStyle:
+                        regulerTextStyle.copyWith(color: const Color(0xffb0d8b2))),
+              ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 32,
           ),
           Text(
             "Medicine & vitamins by Category",
             style: regulerTextStyle.copyWith(fontSize: 16),
           ),
-          SizedBox(
+          const SizedBox(
             height: 14,
           ),
           GridView.builder(
-              physics: ClampingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              physics: const ClampingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4, mainAxisSpacing: 10),
               itemCount: listCategory.length,
               shrinkWrap: true,
               itemBuilder: (context, i) {
                 final x = listCategory[i];
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      index = i;
-                      filter = true;
-                      print("$index, $filter");
-                    });
-                  },
-                  child: CardCategory(
-                    imageCategory: x.image,
-                    nameCategory: x.category,
-                  ),
-                );
+                if (i == null) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        index = i;
+                        filter = true;
+                        print("$index, $filter");
+                      });
+                    },
+                    child: CardCategory(
+                      imageCategory: x.image,
+                      nameCategory: x.category,
+                    ),
+                  );
+                }
               }),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           filter
               ? index == 7
-                  ? Text("featrue on progress")
+                  ? const Text("featrue on progress")
                   : GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           crossAxisSpacing: 16,
                           mainAxisSpacing: 16),
                       itemCount: listCategory[index!].product.length,
                       shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       itemBuilder: (context, i) {
                         final y = listCategory[index!].product[i];
-                        return CardProduct(
-                          image: y.image,
-                          name: y.name,
-                          price: y.price,
+                        return InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailProduct(productModel: y)));
+                          },
+                          child: CardProduct(
+                            image: y.image,
+                            name: y.name,
+                            price: y.price,
+                          ),
                         );
                       })
               : GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16),
                   itemCount: listProduct.length,
                   shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   itemBuilder: (context, i) {
                     final y = listProduct[i];
-                    return CardProduct(
-                      image: y.image,
-                      name: y.name,
-                      price: y.price,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailProduct(productModel: y)));
+                      },
+                      child: CardProduct(
+                        image: y.image,
+                        name: y.name,
+                        price: y.price,
+                      ),
                     );
                   }),
         ],

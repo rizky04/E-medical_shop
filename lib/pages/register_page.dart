@@ -1,10 +1,8 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
-import 'package:flutter/material.dart';
 import 'package:medical/network/api/url_api.dart';
 import 'package:medical/pages/login_page.dart';
 import 'package:medical/theme.dart';
@@ -42,7 +40,7 @@ class _RegisterPagesState extends State<RegisterPages> {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text("Information"),
+                title: const Text("Information"),
                 content: Text(message),
                 actions: [
                   TextButton(
@@ -50,19 +48,19 @@ class _RegisterPagesState extends State<RegisterPages> {
                         Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginPages()),
+                                builder: (context) => const LoginPages()),
                             (route) => false);
                       },
-                      child: Text("OKE"))
+                      child: const Text("OKE"))
                 ],
               ));
     } else {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-                title: Text("Information"),
+                title: const Text("Information"),
                 content: Text(message),
-                actions: [TextButton(onPressed: () {}, child: Text("OKE"))],
+                actions: [TextButton(onPressed: () {}, child: const Text("OKE"))],
               ));
     }
   }
@@ -74,10 +72,10 @@ class _RegisterPagesState extends State<RegisterPages> {
       body: ListView(
         children: [
           Container(
-            child: GeneralLogoSpace(),
+            child: const GeneralLogoSpace(),
           ),
           Container(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -88,15 +86,15 @@ class _RegisterPagesState extends State<RegisterPages> {
                   style: regulerTextStyle.copyWith(
                       fontSize: 15, color: greyLightColor),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16),
+                  padding: const EdgeInsets.only(left: 16),
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color(0x40000000),
                             offset: Offset(0, 1),
@@ -114,15 +112,15 @@ class _RegisterPagesState extends State<RegisterPages> {
                             fontSize: 15, color: greyLightColor)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16),
+                  padding: const EdgeInsets.only(left: 16),
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color(0x40000000),
                             offset: Offset(0, 1),
@@ -140,15 +138,15 @@ class _RegisterPagesState extends State<RegisterPages> {
                             fontSize: 15, color: greyLightColor)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16),
+                  padding: const EdgeInsets.only(left: 16),
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color(0x40000000),
                             offset: Offset(0, 1),
@@ -166,15 +164,15 @@ class _RegisterPagesState extends State<RegisterPages> {
                             fontSize: 15, color: greyLightColor)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16),
+                  padding: const EdgeInsets.only(left: 16),
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color(0x40000000),
                             offset: Offset(0, 1),
@@ -192,15 +190,15 @@ class _RegisterPagesState extends State<RegisterPages> {
                             fontSize: 15, color: greyLightColor)),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 16),
+                  padding: const EdgeInsets.only(left: 16),
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Color(0x40000000),
                             offset: Offset(0, 1),
@@ -229,14 +227,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                         )),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 50,
                 ),
               ],
             ),
           ),
           Container(
-            padding: EdgeInsets.all(24),
+            padding: const EdgeInsets.all(24),
             child: ButtonPrimary(
                 text: "Register Now",
                 onTap: () {
@@ -248,14 +246,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text("warning !!"),
-                              content: Text('Please, enter the field'),
+                              title: const Text("warning !!"),
+                              content: const Text('Please, enter the field'),
                               actions: [
                                 TextButton(
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    child: Text("oke"))
+                                    child: const Text("oke"))
                               ],
                             ));
                   } else {
@@ -263,7 +261,7 @@ class _RegisterPagesState extends State<RegisterPages> {
                   }
                 }),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -274,14 +272,14 @@ class _RegisterPagesState extends State<RegisterPages> {
                 style: lightTextStyle.copyWith(
                     color: greyLightColor, fontSize: 15),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               InkWell(
                 onTap: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => LoginPages()),
+                      MaterialPageRoute(builder: (context) => const LoginPages()),
                       (route) => false);
                 },
                 child: Text(

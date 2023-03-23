@@ -1,14 +1,13 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:medical/network/model/product_model.dart';
 import 'package:medical/theme.dart';
 
 class CardCategory extends StatelessWidget {
   final String imageCategory;
   final String nameCategory;
 
-  const CardCategory({
+  const CardCategory({super.key, 
     required this.imageCategory,
     required this.nameCategory,
   });
@@ -21,7 +20,7 @@ class CardCategory extends StatelessWidget {
           imageCategory,
           width: 65,
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Text(

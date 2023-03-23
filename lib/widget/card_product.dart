@@ -1,19 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:medical/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:medical/network/model/product_model.dart';
+import 'package:intl/intl.dart';
 
 class CardProduct extends StatelessWidget {
   final String image;
   final String name;
   final String price;
   const CardProduct(
-      {required this.image, required this.name, required this.price});
+      {super.key, required this.image, required this.name, required this.price});
 
   @override
   Widget build(BuildContext context) {
+    final priceFormat = NumberFormat("#,##0", "EN_US");
     return Container(
       decoration: BoxDecoration(
         color: whtiteColor,
@@ -26,7 +25,7 @@ class CardProduct extends StatelessWidget {
             width: 115,
             height: 76,
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Text(
@@ -34,11 +33,11 @@ class CardProduct extends StatelessWidget {
             style: regulerTextStyle,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 14,
           ),
           Text(
-            price,
+            priceFormat.format(int.parse(price)),
             style: boldTextStyle,
           )
         ],

@@ -12,6 +12,7 @@ class CatergoryWithProduct {
     required this.status,
     required this.product,
   });
+  
   factory CatergoryWithProduct.fromJson(Map<String, dynamic> data) {
     var list = data['product'] as List;
     List<ProductModel> listProduct =
