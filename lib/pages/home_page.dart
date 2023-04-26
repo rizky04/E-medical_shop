@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:medical/network/api/url_api.dart';
 import 'package:medical/network/model/product_model.dart';
+import 'package:medical/pages/cart_page.dart';
 import 'package:medical/pages/detail_product.dart';
 import 'package:medical/pages/search_product.dart';
 import 'package:medical/theme.dart';
@@ -87,7 +88,12 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => CartPage()),
+                        (route) => false);
+                  },
                   icon: Icon(
                     Icons.shopping_cart_outlined,
                     color: greenColor,
@@ -99,8 +105,10 @@ class _HomePageState extends State<HomePage> {
           ),
           InkWell(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SearchProduct()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const SearchProduct()));
             },
             child: Container(
               height: 55,
@@ -116,8 +124,8 @@ class _HomePageState extends State<HomePage> {
                       color: Color(0xffb1d8b2),
                     ),
                     hintText: "Search medicine...?",
-                    hintStyle:
-                        regulerTextStyle.copyWith(color: const Color(0xffb0d8b2))),
+                    hintStyle: regulerTextStyle.copyWith(
+                        color: const Color(0xffb0d8b2))),
               ),
             ),
           ),
@@ -166,10 +174,11 @@ class _HomePageState extends State<HomePage> {
               ? index == 7
                   ? const Text("featrue on progress")
                   : GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16),
                       itemCount: listCategory[index!].product.length,
                       shrinkWrap: true,
                       physics: const ClampingScrollPhysics(),

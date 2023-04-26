@@ -30,7 +30,7 @@ class _LoginPagesState extends State<LoginPages> {
     final data = jsonDecode(Response.body);
     int value = data['value'];
     String message = data['message'];
-    String idUser = data['user_id'];
+    String idUser = data['id_user'];
     String name = data['name'];
     String email = data['email'];
     String phone = data['phone'];
@@ -48,7 +48,8 @@ class _LoginPagesState extends State<LoginPages> {
                       onPressed: () {
                         Navigator.pushAndRemoveUntil(
                             context,
-                            MaterialPageRoute(builder: (context) => const MainPage()),
+                            MaterialPageRoute(
+                                builder: (context) => const MainPage()),
                             (route) => false);
                         print(name);
                       },
@@ -61,7 +62,9 @@ class _LoginPagesState extends State<LoginPages> {
           builder: (context) => AlertDialog(
                 title: const Text("information"),
                 content: Text(message),
-                actions: [TextButton(onPressed: () {}, child: const Text("oke"))],
+                actions: [
+                  TextButton(onPressed: () {}, child: const Text("oke"))
+                ],
               ));
     }
   }
@@ -214,7 +217,8 @@ class _LoginPagesState extends State<LoginPages> {
                 onTap: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => const RegisterPages()),
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterPages()),
                       (route) => false);
                 },
                 child: Text(
