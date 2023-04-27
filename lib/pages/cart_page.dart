@@ -28,13 +28,14 @@ class _CartPageState extends State<CartPage> {
       fullName = pref.getString(PrefProfile.name);
       address = pref.getString(PrefProfile.address);
       phone = pref.getString(PrefProfile.phone);
-      String? Bacot = pref.getString(PrefProfile.idUser);
     });
+    getCartes();
   }
 
   List<CartModel> listCart = [];
   getCartes() async {
-    var getCartss = Uri.parse(BASEURL.getCart + '7');
+    listCart.clear();
+    var getCartss = Uri.parse(BASEURL.getCart + '$userID');
     final Response = await http.get(getCartss);
     if (Response.statusCode == 200) {
       setState(() {
@@ -50,7 +51,6 @@ class _CartPageState extends State<CartPage> {
   void initState() {
     super.initState();
     getPref();
-    getCartes();
   }
 
   @override

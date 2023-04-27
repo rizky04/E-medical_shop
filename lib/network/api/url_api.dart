@@ -1,4 +1,6 @@
 class BASEURL {
+  static String getCart =
+      "https://medical.emp-production.website/get_cart.php?userID=";
   // static String ipAddress = "192.168.0.6";
   // static String apiRegister = "http://$ipAddress/medical/register_api.php/";
   static String apiRegister =
@@ -11,7 +13,7 @@ class BASEURL {
       "https://medical.emp-production.website/get_product.php";
   static String addToCart =
       "https://medical.emp-production.website/add_to_cart.php";
-  static String getCart =
-      "https://medical.emp-production.website/get_cart.php?userID=";
+  // static String getCart =
+  //     "https://medical.emp-production.website/get_cart.php?userID=";
 }
 // https://medical.emp-production.website/
