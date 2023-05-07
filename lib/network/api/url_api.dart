@@ -13,7 +13,7 @@ class BASEURL {
       "https://medical.emp-production.website/get_product.php";
   static String addToCart =
       "https://medical.emp-production.website/add_to_cart.php";
-  // static String getCart =
-  //     "https://medical.emp-production.website/get_cart.php?userID=";
+  static String updateQTYCart =
+      "https://medical.emp-production.website/update_quantity.php";
 }
 // https://medical.emp-production.website/
