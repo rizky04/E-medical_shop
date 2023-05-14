@@ -36,6 +36,7 @@ class _CartPageState extends State<CartPage> {
       phone = pref.getString(PrefProfile.phone);
     });
     getCartes();
+    cartTotalPrice();
   }
 
   List<CartModel> listCart = [];
@@ -66,7 +67,7 @@ class _CartPageState extends State<CartPage> {
         loadingnya = true;
         getPref();
       });
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
       setState(() {
         loadingnya = false;
       });
@@ -76,10 +77,31 @@ class _CartPageState extends State<CartPage> {
         loadingnya = true;
         getPref();
       });
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(Duration(seconds: 1));
       setState(() {
         loadingnya = false;
       });
+    }
+  }
+
+  var sumPrice = "0";
+  int totalPay = 0;
+  int delivery = 0;
+  cartTotalPrice() async {
+    var urlTotalPrice = Uri.parse(BASEURL.totalQTYCart + '$userID');
+    final Response = await http.get(urlTotalPrice);
+    if (Response.statusCode == 200) {
+      final data = jsonDecode(Response.body);
+      if (data['Total'] == null) {
+        setState(() {});
+      } else {
+        String total = data['Total'];
+        setState(() {
+          sumPrice = total;
+          totalPay = sumPrice == null ? 0 : int.parse(sumPrice) + delivery;
+        });
+        print(sumPrice);
+      }
     }
   }
 
@@ -113,12 +135,12 @@ class _CartPageState extends State<CartPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Total Itemsss",
+                              "Total Item",
                               style: regulerTextStyle.copyWith(
                                   fontSize: 16, color: greyBoldColor),
                             ),
                             Text(
-                              "total",
+                              "IDR " + price.format(int.parse(sumPrice)),
                               style: boldTextStyle.copyWith(
                                   fontSize: 16, color: greyBoldColor),
                             )
@@ -136,7 +158,7 @@ class _CartPageState extends State<CartPage> {
                                   fontSize: 16, color: greyBoldColor),
                             ),
                             Text(
-                              "total",
+                              "IDR " + price.format(delivery),
                               style: boldTextStyle.copyWith(
                                   fontSize: 16, color: greyBoldColor),
                             )
@@ -154,7 +176,7 @@ class _CartPageState extends State<CartPage> {
                                   fontSize: 16, color: greyBoldColor),
                             ),
                             Text(
-                              "total",
+                              "IDR " + price.format(totalPay),
                               style: boldTextStyle.copyWith(
                                   fontSize: 16, color: greyBoldColor),
                             )
@@ -344,6 +366,15 @@ class _CartPageState extends State<CartPage> {
                                                 color: Colors.redAccent,
                                               ),
                                             ),
+                                            IconButton(
+                                              onPressed: () {
+                                                updateQty("kurang", x.id_cart);
+                                              },
+                                              icon: Icon(
+                                                Icons.restore_from_trash,
+                                                color: Colors.redAccent,
+                                              ),
+                                            ),
                                           ],
                                         ),
                                         Text(
@@ -380,7 +411,7 @@ class animasiLoading extends StatelessWidget {
           // leftDotColor: const Color(0xFF1A1A3F),
           // rightDotColor: const Color(0xFFEA3799),
           color: greenColor,
-          size: 100,
+          size: 50,
         ),
       ),
     );

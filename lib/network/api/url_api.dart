@@ -15,5 +15,9 @@ class BASEURL {
       "https://medical.emp-production.website/add_to_cart.php";
   static String updateQTYCart =
       "https://medical.emp-production.website/update_quantity.php";
+  static String totalQTYCart =
+      "https://medical.emp-production.website/get_total_price.php?userID=";
+  static String getTotalCart =
+      "https://medical.emp-production.website/totaol_cart.php?userID=";
 }
 // https://medical.emp-production.website/
